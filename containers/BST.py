@@ -107,8 +107,7 @@ class BST(BinaryTree):
             self.root = Node(value)
         else:
             return BST._insert(self.root, value)
-    
-
+ 
     @staticmethod
     def _insert(node, value):
         '''
@@ -124,6 +123,7 @@ class BST(BinaryTree):
                 BST._insert(node.right, value)
             else:
                 node.right = Node(value)
+
     def insert_list(self, xs):
         '''
         Given a list xs, insert each element of xs into self.
@@ -177,7 +177,6 @@ class BST(BinaryTree):
             else:
                 return False
 
-
     def find_smallest(self):
         '''
         Returns the smallest value in the tree.
@@ -197,7 +196,6 @@ class BST(BinaryTree):
             return node.value
         else:
             return BST._find_smallest(node.left)
-
 
     def find_largest(self):
         '''
@@ -286,4 +284,3 @@ class BST(BinaryTree):
     def __iter__(self):
         if self:
             return self.root.__iter__()
-
