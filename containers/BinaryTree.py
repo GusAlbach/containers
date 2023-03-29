@@ -32,6 +32,7 @@ class Node():
         ret += ')'
         return ret
 
+
 class BinaryTree():
     '''
     This class is relatively useless by itself,
