@@ -221,35 +221,36 @@ class BST(BinaryTree):
         HINT:
         Use a recursive helper function.
         '''
-        if self.root is None:
-            return self.root
-        else:
-            self.root = BST._remove(self.root, value)
+        self.root = BST._remove(self.root, value)
 
     @staticmethod
     def _remove(node, value):
-        '''
-        Added this as a helper function for remove
-        '''
         if node is None:
-            return node
-        if node.value > value:
-            node.left = BST._remove(node.left, value)
-            return node
-        if node.value < value:
+            return
+        if value > node.value and node.right:
             node.right = BST._remove(node.right, value)
             return node
-        if node.value == value:
+        elif value < node.value and node.left:
+            node.left = BST._remove(node.left, value)
+            return node
+        elif value == node.value:
             if node.left is None and node.right is None:
                 return None
-            if node.left is None:
+            elif node.left is None:
                 return node.right
-            if node.right is None:
+            elif node.right is None:
                 return node.left
+            else:
+                smallest = BST._find_smallest(node.right)
+                if smallest == node.right.value:
+                    ret = node.right
+                    ret.left = node.left
+                else:
+                    ret = Node(smallest)
+                    ret.left = node.left
+                    ret.right = BST._remove(node.right, smallest)
+                return ret
         else:
-            node.right = BST._remove(BST._find_smallest(node.right), node.right)
-            node.value = BST._find_smallest(node.right)
-
             return node
 
     def remove_list(self, xs):
@@ -266,5 +267,5 @@ class BST(BinaryTree):
             self.remove(xs[a])
 
     def __iter__(self):
-        if self:
-            return self.root.__iter__()
+        for x in self.to_list('inorder'):
+            yield x
