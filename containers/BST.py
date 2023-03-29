@@ -91,7 +91,7 @@ class BST(BinaryTree):
             self.root = Node(value)
         else:
             return BST._insert(self.root, value)
- 
+
     @staticmethod
     def _insert(node, value):
         '''
