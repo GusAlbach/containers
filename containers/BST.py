@@ -61,6 +61,7 @@ class BST(BinaryTree):
             return True
         return False
         # implement the sorting function from the sorting homework, then perhaps recursively call through the function
+
     def is_bst_satisfied(self):
         '''
         Whenever you implement a data structure,

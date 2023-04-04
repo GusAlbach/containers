@@ -44,7 +44,7 @@ class AVLTree(BST):
         '''
         Returns True if the avl tree satisfies that all nodes have a balance factor in [-1,0,1].
         '''
-        
+
         return AVLTree._is_avl_satisfied(self.root)
 
     @staticmethod
@@ -91,8 +91,6 @@ class AVLTree(BST):
             return new_root
         if node is None:
             return node
-
-
 
     @staticmethod
     def _right_rotate(node):
@@ -150,8 +148,6 @@ class AVLTree(BST):
             node.right = AVLTree._insert(value, node.right)
         return AVLTree._rebalance(node)
 
-
-    
     def insert_list(self, xs):
         if self.root:
             for a in range(len(xs)):
@@ -177,4 +173,3 @@ class AVLTree(BST):
                 return AVLTree._right_rotate(node)
             else:
                 return AVLTree._right_rotate(node)
-
