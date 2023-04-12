@@ -77,7 +77,7 @@ class Heap(BinaryTree):
         '''
         print("print(node.value)=", print(node.value))
         if node is None:
-            return True 
+            return True
         if node.right:
             if node.value <= node.right.value:
                 Heap._is_heap_satisfied(node.right)
@@ -217,7 +217,7 @@ class Heap(BinaryTree):
         if Heap._is_heap_satisfied(node):
             print("print(should be done!)=")
             print("print(Heap.__repr__())=", print(Heap.__repr__(node)))
-            return 
+            return
         if node.right:
             if node.right.value < node.value:
                 node.value, node.right.value = node.right.value, node.value
