@@ -176,33 +176,57 @@ class Heap(BinaryTree):
         It's possible to do it with only a single helper (or no helper at all),
         but I personally found dividing up the code into two made the most sense.
         '''
-        self.nu_nodes += 1
-        binary_str = bin(self.nu_nodes)[3:]
+        print('New!')
         if self.root is None:
             return None
+        length = self.__len__()
+        if length <= 1:
+            self.root = None
         else:
+            binary_str = bin(length)[3:]
             new_start = Heap._remove_bottom_right(self.root, binary_str)
+            print("print(new_start)=", print(new_start))
             self.root.value = new_start
-            Heap._trickle(self.root)
+            if self.__len__() > 1:
+                self.root = Heap._trickle(self.root)
+            else:
+                return
 
     @staticmethod
     def _remove_bottom_right(node, binary_str):
-        if node is None:
-            return None
+        print("print(node)=", print(node))
         if binary_str[0] == '0':
             if len(binary_str) == 1:
-                print(moo)
+                new_start = node.left.value
+                node.left = None
+                return new_start
+            else:
+                return Heap._remove_bottom_right(node.left, binary_str[1:])
         if binary_str[0] == '1':
             if len(binary_str) == 1:
-                print(oink)
+                new_start = node.right.value
+                node.right = None
+                return new_start
+            else:
+                return Heap._remove_bottom_right(node.right, binary_str[1:])
 
     @staticmethod
     def _trickle(node):
+        print("print(node.value)=", print(node.value))
+        print("print(node)=", print(node))
+        if Heap._is_heap_satisfied(node):
+            print("print(should be done!)=")
+            print("print(Heap.__repr__())=", print(Heap.__repr__(node)))
+            return 
         if node.right:
             if node.right.value < node.value:
                 node.value, node.right.value = node.right.value, node.value
+                print('right one stomp')
+                print("print(node.value)=", print(node.value))
                 Heap._trickle(node.right)
         if node.left:
             if node.left.value < node.value:
                 node.value, node.left.value = node.left.value, node.value
+                print("left one stomp")
+                print("print(node.value)=", print(node.value))
                 Heap._trickle(node.left)
