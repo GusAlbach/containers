@@ -283,7 +283,6 @@ def test__BST_inorder_property(xs):
     assert bst1.to_list('inorder') == bst2.to_list('inorder')
 
 
-<<<<<<< HEAD
 def test__BST_iterable_1():
     '''
     The BST should be iterable.
