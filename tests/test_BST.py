@@ -339,4 +339,4 @@ def test__BST_eq(xs):
     random.shuffle(xs2)
     bst2 = BST(xs2)
 
-    assert bst1 == bst2
+    assert list(bst1) == list(bst2)
